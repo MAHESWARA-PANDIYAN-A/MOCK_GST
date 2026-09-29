@@ -9,6 +9,16 @@ from sqlalchemy.orm import Session
 from app.core.config import settings
 from app.core.database import get_db
 
+# Compatibility patch for passlib with newer bcrypt versions
+try:
+    import bcrypt
+    if not hasattr(bcrypt, "__about__"):
+        class _About:
+            __version__ = getattr(bcrypt, "__version__", "4.0.1")
+        bcrypt.__about__ = _About()
+except Exception:
+    pass
+
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 security_bearer = HTTPBearer(auto_error=False)
 api_key_header = APIKeyHeader(name="X-API-Key", auto_error=False)
