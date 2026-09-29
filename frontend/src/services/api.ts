@@ -2,9 +2,13 @@ import axios from 'axios';
 
 export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || (
   typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
-    ? 'http://localhost:8003/api'
-    : 'https://mock-gst.onrender.com/api'
+    ? (window.location.port === '5173' || window.location.port === '8176' ? 'http://localhost:8003/api' : '/api')
+    : '/api'
 );
+
+export const DOCS_URL = API_BASE_URL.startsWith('http')
+  ? API_BASE_URL.replace(/\/api\/?$/, '/docs')
+  : '/docs';
 
 const api = axios.create({
   baseURL: API_BASE_URL,

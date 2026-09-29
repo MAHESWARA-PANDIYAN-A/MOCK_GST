@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { API_BASE_URL } from '../../services/api';
+import { API_BASE_URL, DOCS_URL } from '../../services/api';
 import { PrototypeBadge } from '../../components/common/PrototypeBadge';
 import { 
   Terminal, Play, CheckCircle2, AlertCircle, Copy, 
@@ -260,7 +260,7 @@ export const IntegrationSandbox: React.FC = () => {
           <div className="flex items-center gap-3">
             <PrototypeBadge size="sm" />
             <a
-              href="http://localhost:8003/docs"
+              href={DOCS_URL}
               target="_blank"
               rel="noreferrer"
               className="px-3 py-1.5 bg-slate-700 hover:bg-slate-600 rounded-xl text-xs font-semibold text-blue-400 flex items-center gap-1"

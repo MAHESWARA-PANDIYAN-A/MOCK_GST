@@ -2,6 +2,7 @@ import React from 'react';
 import { PrototypeBadge } from './PrototypeBadge';
 import { ShieldCheck, Terminal, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { DOCS_URL } from '../../services/api';
 
 export const Footer: React.FC = () => {
   return (
@@ -43,7 +44,7 @@ export const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
-                <a href="http://localhost:8003/docs" target="_blank" rel="noreferrer" className="hover:text-blue-400 flex items-center gap-1.5 transition-colors">
+                <a href={DOCS_URL} target="_blank" rel="noreferrer" className="hover:text-blue-400 flex items-center gap-1.5 transition-colors">
                   <ExternalLink className="w-3.5 h-3.5 text-blue-400" />
                   <span>FastAPI Swagger Docs</span>
                 </a>

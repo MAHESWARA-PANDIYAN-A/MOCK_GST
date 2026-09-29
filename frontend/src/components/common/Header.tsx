@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { PrototypeBadge } from './PrototypeBadge';
+import { DOCS_URL } from '../../services/api';
 import { 
   Building2, User as UserIcon, LogOut, Shield, FileText, 
   Terminal, Home, CheckSquare, Bell 
@@ -35,7 +36,7 @@ export const Header: React.FC = () => {
               <Terminal className="w-3.5 h-3.5 text-amber-400" />
               <span>SIH Integration Sandbox</span>
             </Link>
-            <a href="http://localhost:8003/docs" target="_blank" rel="noreferrer" className="hover:text-blue-400 transition-colors">
+            <a href={DOCS_URL} target="_blank" rel="noreferrer" className="hover:text-blue-400 transition-colors">
               Swagger API Docs
             </a>
           </div>
