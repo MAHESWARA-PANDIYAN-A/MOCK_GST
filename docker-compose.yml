@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: mock-gst-backend
+    ports:
+      - "8002:8002"
+    environment:
+      - DATABASE_URL=sqlite:///./mock_gst.db
+      - JWT_SECRET=mock_gst_super_secret_jwt_key_sih26130_prototype_2026
+      - MOCK_GST_API_KEY=gst_sih26130_secret_api_key_mock_2026
+      - FRONTEND_URL=http://localhost:5173
+      - MAIN_SIH_PORTAL_URL=http://localhost:3000
+      - UPLOAD_DIR=./uploads
+      - MAX_UPLOAD_SIZE_MB=5
+      - MOCK_OTP=123456
+    volumes:
+      - ./uploads:/app/uploads
+      - ./backend/mock_gst.db:/app/mock_gst.db
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: mock-gst-frontend
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_API_BASE_URL=http://localhost:8002/api
+    depends_on:
+      - backend
+    restart: unless-stopped
