@@ -9,5 +9,4 @@ python-multipart>=0.0.9
 requests>=2.31.0
 httpx>=0.27.0
 python-dotenv>=1.0.1
-alembic>=1.13.1
-run this in 517
+psycopg2-binary>=2.9.9
